@@ -7,7 +7,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
 
 public class StoredFile {
     private String storedFile;
@@ -19,16 +18,15 @@ public class StoredFile {
     }
 
     public int search(String key, String value) {
+        // duyet danh sách
         int index = -1;
         String diachi = null;
         for (int i = 0; i < memory.size(); i++) {
-            JsonObject jsonObject = (JsonObject) memory.get(i);
+            JsonObject jsonObject = memory.get(i).getAsJsonObject();
             diachi = jsonObject.get(key).getAsString();
             if (value.equals(diachi)) {
                 index = i;
                 break;
-            } else {
-                index = 0;
             }
         }
         return index;
@@ -37,7 +35,7 @@ public class StoredFile {
     public JsonArray read() {
         JsonArray jsonArray = null;
         try (FileReader reader = new FileReader(storedFile)) {
-            jsonArray = JsonReader(reader);
+            jsonArray = (JsonArray) JsonParser.parseReader(reader);
         } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
@@ -45,22 +43,15 @@ public class StoredFile {
         return jsonArray;
     }
 
-    private JsonArray JsonReader(FileReader reader) {
-        return null;
-    }
-
-    public void update(String username, Integer password, String email) {
+    public void update(String gia, String tienich, String diachi, String dientich, String sophong) {
         JsonObject jsonObject = new JsonObject();
-
-        // JsonArray jsonArray = new JsonArray();
-        // jsonArray.ad
-
-        jsonObject.addProperty("un", username);
-        jsonObject.addProperty("ps", password);
-        jsonObject.addProperty("email", email);
-
+        jsonObject.addProperty("G", gia);
+        jsonObject.addProperty("T", tienich);
+        jsonObject.addProperty("AD", diachi);
+        jsonObject.addProperty("S", dientich);
+        jsonObject.addProperty("N", sophong);
         memory.add(jsonObject);
-        // memory.ad
+        // memory add
     }
 
     public void write() {
@@ -68,21 +59,12 @@ public class StoredFile {
         try (FileWriter writer = new FileWriter(storedFile)) {
             gson.toJson(memory, writer);
         } catch (Exception e) {
+            // TODO: handle exception
             e.printStackTrace();
-
         }
     }
 
     public JsonArray getAll() {
         return this.memory;
     }
-
-    @Override
-    public String toString() {
-        return "StoredFile [memory=" + memory + ", storedFile=" + storedFile + "]";
-    }
-
-    public void update(String string, String string2) {
-    }
-
 }

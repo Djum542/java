@@ -21,6 +21,9 @@ public class RoomHotel {
     public RoomHotel() {
     }
 
+    public RoomHotel(int i, int j, String string, String string2, String string3) {
+    }
+
     public boolean checkBookRoom() {
         return bookroom;
     }
@@ -37,6 +40,9 @@ public class RoomHotel {
     public String toString() {
         return "RoomHotel [diachi=" + diachi + ", dientich=" + dientich + ", gia=" + gia + ", sophong=" + sophong
                 + ", tienich=" + tienich + "]";
+    }
+
+    public void addProperty(RoomHotel roomHotel) {
     }
 
 }
