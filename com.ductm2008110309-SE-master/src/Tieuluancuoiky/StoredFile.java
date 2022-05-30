@@ -20,11 +20,11 @@ public class StoredFile {
 
     public int search(String key, String value) {
         int index = -1;
-        String username = null;
+        String diachi = null;
         for (int i = 0; i < memory.size(); i++) {
             JsonObject jsonObject = (JsonObject) memory.get(i);
-            username = jsonObject.get(key).getAsString();
-            if (value.equals(username)) {
+            diachi = jsonObject.get(key).getAsString();
+            if (value.equals(diachi)) {
                 index = i;
                 break;
             } else {

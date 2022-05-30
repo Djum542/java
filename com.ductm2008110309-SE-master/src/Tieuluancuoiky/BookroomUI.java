@@ -15,6 +15,9 @@ public class BookroomUI {
         this.command = null;
     }
 
+    public BookroomUI(BookingControler bookingControler2) {
+    }
+
     // Lắng nghe yêu cầu từ khách hàng
     public String handlCommand(String rep) {
         String cmd = rep.toUpperCase();
@@ -43,7 +46,11 @@ public class BookroomUI {
         List<Object> list = new ArrayList<>();
         System.out.println("Nơi bạn muốn đến?/n Where are you go?");
         String diachi = in.nextLine();
-        list.add(diachi);
+        // list.add(diachi);
+        if (list.equals(list)) {
+            String room = in.nextLine();
+        }
         return list;
     }
+
 }

@@ -18,6 +18,9 @@ public class RoomHotel {
         this.sophong = sophong;
     }
 
+    public RoomHotel() {
+    }
+
     public boolean checkBookRoom() {
         return bookroom;
     }
